@@ -28,7 +28,7 @@ describe('Transaction', () => {
     await mainConnection.close();
   });
 
-  it('should be able to list transactions', async () => {
+  it.only('should be able to list transactions', async () => {
     await request(app).post('/transactions').send({
       title: 'March Salary',
       type: 'income',
@@ -60,7 +60,7 @@ describe('Transaction', () => {
     });
   });
 
-  it('should be able to create new transaction', async () => {
+  it.only('should be able to create new transaction', async () => {
     const transactionsRepository = getRepository(Transaction);
 
     const response = await request(app).post('/transactions').send({
@@ -85,7 +85,7 @@ describe('Transaction', () => {
     );
   });
 
-  it('should create tags when inserting new transactions', async () => {
+  it.only('should create tags when inserting new transactions', async () => {
     const transactionsRepository = getRepository(Transaction);
     const categoriesRepository = getRepository(Category);
 
@@ -120,7 +120,7 @@ describe('Transaction', () => {
     );
   });
 
-  it('should not create tags when they already exists', async () => {
+  it.only('should not create tags when they already exists', async () => {
     const transactionsRepository = getRepository(Transaction);
     const categoriesRepository = getRepository(Category);
 
@@ -150,7 +150,7 @@ describe('Transaction', () => {
     expect(transaction).toBeTruthy();
   });
 
-  it('should not be able to create outcome transaction without a valid balance', async () => {
+  it.only('should not be able to create outcome transaction without a valid balance', async () => {
     await request(app).post('/transactions').send({
       title: 'March Salary',
       type: 'income',
@@ -174,7 +174,7 @@ describe('Transaction', () => {
     );
   });
 
-  it('should be able to delete a transaction', async () => {
+  it.only('should be able to delete a transaction', async () => {
     const transactionsRepository = getRepository(Transaction);
 
     const response = await request(app).post('/transactions').send({
@@ -191,7 +191,7 @@ describe('Transaction', () => {
     expect(transaction).toBeFalsy();
   });
 
-  it('should be able to import transactions', async () => {
+  it.only('should be able to import transactions', async () => {
     const transactionsRepository = getRepository(Transaction);
     const categoriesRepository = getRepository(Category);
 
